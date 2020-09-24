@@ -16,19 +16,21 @@
 
     <Button
         android:id="@+id/button_add"
-        android:layout_width="match_parent"
+        android:layout_width="189dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/task_add"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="0dp"
         android:text="Add" />
 
     <Button
         android:id="@+id/button_clear_all"
-        android:layout_width="412dp"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button_add"
+        android:layout_below="@+id/task_add"
         android:layout_alignParentRight="true"
         android:layout_marginTop="0dp"
+        android:layout_marginRight="221dp"
         android:text="Clear All" />
 
     <TextView
