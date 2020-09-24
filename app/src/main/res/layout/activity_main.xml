@@ -7,30 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/task_add"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:ems="10"
-        android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/button_add"
-        android:layout_width="189dp"
+        android:id="@+id/button_to_add_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/task_add"
-        android:layout_alignParentRight="true"
         android:layout_marginTop="0dp"
         android:text="Add" />
 
     <Button
         android:id="@+id/button_clear_all"
-        android:layout_width="190dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/task_add"
+        android:layout_below="@+id/button_to_add_layout"
         android:layout_alignParentRight="true"
         android:layout_marginTop="0dp"
-        android:layout_marginRight="221dp"
+        android:layout_marginRight="0dp"
         android:text="Clear All" />
 
     <TextView
