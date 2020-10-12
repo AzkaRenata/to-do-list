@@ -7,4 +7,51 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- My Theme -->
+    <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/myPrimary</item>
+        <item name="colorPrimaryDark">@color/myPrimaryDark</item>
+        <item name="tabBackgroundColor">@color/myPrimaryDark</item>
+        <item name="toolbarBackgroundColor">@color/myPrimaryDark</item>
+        <item name="textDarkColor">@color/myPrimaryDark</item>
+        <item name="textTabColor">@color/myText</item>
+        <item name="textWhiteColor">@color/myTextLight</item>
+        <item name="detailBackground">@color/myLayoutColor</item>
+    </style>
+
+    <style name="SecondTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/pantone331c</item>
+        <item name="colorPrimaryDark">@color/pantoneDark331c</item>
+        <item name="tabBackgroundColor">@color/pantone331c</item>
+        <item name="toolbarBackgroundColor">@color/pantone331c</item>
+        <item name="textDarkColor">@color/pantoneDark331c</item>
+        <item name="textTabColor">@color/pantoneDark331c</item>
+        <item name="textWhiteColor">@color/myTextLight</item>
+        <item name="detailBackground">@color/myLayoutColor</item>
+        <item name="imageTransparentOverlay">@color/pantoneTransparent</item>
+    </style>
+
+    <style name="Baru" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/a</item>
+        <item name="colorPrimaryDark">@color/b</item>
+        <item name="tabBackgroundColor">@color/c</item>
+        <item name="toolbarBackgroundColor">@color/pantone331c</item>
+        <item name="textDarkColor">@color/pantoneDark331c</item>
+        <item name="textTabColor">@color/pantoneDark331c</item>
+        <item name="textWhiteColor">@color/myTextLight</item>
+        <item name="detailBackground">@color/myLayoutColor</item>
+        <item name="imageTransparentOverlay">@color/pantoneTransparent</item>
+    </style>
+
+    <style name="Custom" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/customPrimary</item>
+        <item name="colorPrimaryDark">@color/customPrimaryDark</item>
+        <item name="tabBackgroundColor">@color/customText</item>
+        <item name="toolbarBackgroundColor">@color/pantone331c</item>
+        <item name="textDarkColor">@color/pantoneDark331c</item>
+        <item name="textTabColor">@color/pantoneDark331c</item>
+        <item name="textWhiteColor">@color/myTextLight</item>
+        <item name="detailBackground">@color/myLayoutColor</item>
+        <item name="imageTransparentOverlay">@color/pantoneTransparent</item>
+    </style>
 </resources>
