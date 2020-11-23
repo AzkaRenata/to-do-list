@@ -3,12 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <TextView
-        android:id="@+id/name_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="Task Name"/>
+    android:id="@+id/name_title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:text="Task Name"/>
 
     <EditText
         android:id="@+id/task_add"
@@ -18,13 +19,30 @@
         android:ems="10"
         android:inputType="textPersonName" />
 
+    <TextView
+        android:id="@+id/description_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/task_add"
+        android:padding="10dp"
+        android:text="Description"/>
+
+    <EditText
+        android:id="@+id/task_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/description_title"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
     <Button
         android:id="@+id/button_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/task_date"
+        android:layout_below="@+id/task_description"
         android:layout_marginTop="0dp"
-        android:text="Add" />
+        android:text="Add"
+        android:paddingTop="12dp"/>
 
     <Button
         android:id="@+id/button_back"
@@ -33,46 +51,5 @@
         android:layout_below="@+id/button_add"
         android:layout_marginTop="0dp"
         android:text="Back" />
-
-    <TextView
-        android:id="@+id/description_title"
-        android:layout_below="@+id/task_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="Description"/>
-
-    <EditText
-        android:id="@+id/task_description"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_below="@id/description_title"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine" />
-
-    <CheckBox
-        android:id="@+id/check_important"
-        android:layout_below="@id/task_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Important" />
-
-    <TextView
-        android:id="@+id/date_title"
-        android:padding="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/check_important"
-        android:text="Due Date" />
-
-    <EditText
-        android:id="@+id/task_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/date_title"
-        android:ems="10"
-        android:inputType="date" />
-
 
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.to_dolist.modul.add;
+package com.example.to_dolist.modul.edit;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,23 +11,27 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.example.to_dolist.data.model.Task;
-import com.example.to_dolist.modul.list.ListActivity;
 import com.example.to_dolist.R;
 import com.example.to_dolist.base.BaseFragment;
+import com.example.to_dolist.data.model.Task;
+import com.example.to_dolist.modul.list.ListActivity;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class AddFragment extends BaseFragment<AddActivity, AddContract.Presenter> implements AddContract.View {
-    Button btnBack;
-    Button btnAdd;
+public class EditFragment extends BaseFragment<EditActivity, EditContract.Presenter> implements EditContract.View {
     EditText etTaskTitle;
     EditText etTaskDescription;
-    ArrayList<Task> taskList = new ArrayList<>();
+    Button btnAdd;
+    //String id;
+    Task task;
+    TextView test;
+    ArrayList<Task> taskList;
+    int id;
 
-    public AddFragment(ArrayList<Task> taskList) {
+
+    public EditFragment(ArrayList<Task> taskList, int id) {
         this.taskList = taskList;
+        this.id = id;
     }
 
     @Nullable
@@ -35,45 +39,39 @@ public class AddFragment extends BaseFragment<AddActivity, AddContract.Presenter
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_add, container, false);
-        mPresenter = new AddPresenter(this);
+        mPresenter = new EditPresenter(this);
         mPresenter.start();
 
         etTaskTitle = fragmentView.findViewById(R.id.task_add);
         etTaskDescription = fragmentView.findViewById(R.id.task_description);
         btnAdd = fragmentView.findViewById(R.id.button_add);
-        btnBack = fragmentView.findViewById(R.id.button_back);
-
+        btnAdd.setText("Edit");
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setBtnAddClick();
+                setBtSaveClick();
             }
         });
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setBtnBackClick();
-            }
-        });
-
-        setTitle("New Activity");
+        setTitle("Edit Task");
+        mPresenter.loadData(taskList, id);
 
         return fragmentView;
     }
 
-    public void setBtnAddClick(){
+    public void setBtSaveClick(){
         String title = etTaskTitle.getText().toString();
         String description = etTaskDescription.getText().toString();
-        mPresenter.performAdd(title,description,taskList);
-    }
-
-    public void setBtnBackClick(){
-        mPresenter.moveToList(taskList);
+        mPresenter.saveData(title, description, taskList, id);
     }
 
     @Override
-    public void redirectToList(ArrayList<Task> taskList) {
+    public void setPresenter(EditContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public void redirectToTaskList(ArrayList<Task> taskList) {
         Intent intent = new Intent(activity, ListActivity.class);
         Bundle args = new Bundle();
         args.putSerializable("data", taskList);
@@ -82,7 +80,19 @@ public class AddFragment extends BaseFragment<AddActivity, AddContract.Presenter
     }
 
     @Override
-    public void setPresenter(AddContract.Presenter presenter) {
-        mPresenter = presenter;
+    public void showData(Task task) {
+        etTaskTitle.setText(task.getTitle());
+        etTaskDescription.setText(task.getDescription());
     }
+
+    @Override
+    public void setId(int id) {
+        this.id=id;
+    }
+
+    @Override
+    public void setTask(Task task) {
+        this.task = task;
+    }
+
 }

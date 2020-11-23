@@ -10,37 +10,29 @@
 
     <Button
         android:id="@+id/button_to_add_layout"
-        android:layout_width="match_parent"
+        android:layout_width="195dp"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button_clear_all"
+        android:layout_marginLeft="216dp"
         android:layout_marginTop="0dp"
-        android:text="Add" />
+        android:text="Add"
+        android:paddingTop="12dp"/>
 
     <Button
         android:id="@+id/button_clear_all"
-        android:layout_width="match_parent"
+        android:layout_width="201dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button_to_add_layout"
         android:layout_alignParentRight="true"
         android:layout_marginTop="0dp"
-        android:layout_marginRight="0dp"
-        android:text="Clear All" />
+        android:layout_marginRight="210dp"
+        android:text="Clear All"
+        android:paddingTop="12dp"/>
 
-    <TextView
-        android:id="@+id/task_title"
-        android:paddingVertical="15dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTodolist"
+        android:layout_below="@+id/button_clear_all"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button_clear_all"
-        android:text="LIST TO DO"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:gravity="center_horizontal" />
-
-    <ListView
-        android:id="@+id/task_list"
-        android:layout_below="@+id/task_title"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/custom_layout"/>
+        android:paddingTop="12dp"/>
 
 </RelativeLayout>

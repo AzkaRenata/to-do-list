@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.example.to_dolist.R;
 
-
 public abstract class BaseFragmentHolderActivity extends BaseActivity {
 
     protected TextView tvToolbarTitle;
