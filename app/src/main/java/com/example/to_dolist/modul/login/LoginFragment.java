@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import com.example.to_dolist.R;
 import com.example.to_dolist.base.BaseFragment;
 import com.example.to_dolist.data.model.Task;
+import com.example.to_dolist.data.source.session.UserSessionRepositoryRepository;
 import com.example.to_dolist.modul.list.ListActivity;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Pre
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_login, container, false);
-        mPresenter = new LoginPresenter(this);
+        mPresenter = new LoginPresenter(this, new UserSessionRepositoryRepository(getActivity()));
         mPresenter.start();
 
         etUsername = fragmentView.findViewById(R.id.et_username);
@@ -53,7 +54,7 @@ public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Pre
     public void setBtLoginClick(){
         String email = etUsername.getText().toString();
         String password = etPassword.getText().toString();
-        mPresenter.performLogin();
+        mPresenter.performLogin(email, password);
     }
 
     @Override

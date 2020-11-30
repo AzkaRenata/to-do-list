@@ -12,6 +12,6 @@ public interface LoginContract {
     }
 
     interface Presenter extends BasePresenter {
-        void performLogin();
+        void performLogin(String email, String password);
     }
 }
