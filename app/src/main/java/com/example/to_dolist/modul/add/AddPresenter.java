@@ -21,9 +21,7 @@ public class AddPresenter implements AddContract.Presenter {
 
     @Override
     public void performAdd(String title, String description, ArrayList<Task> taskList) {
-        int id = taskList.size() + 1;
-        Task newTask = new Task(id, title, description);
-        taskList.add(newTask);
+
 
         view.redirectToList(taskList);
     }

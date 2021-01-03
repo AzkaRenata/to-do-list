@@ -10,29 +10,51 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvTodolistTitle"
+            <CheckBox
+                android:id="@+id/task_check_cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="15dp"
-            android:text="Title"
+            android:layout_marginVertical="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical"
+            android:padding="5dp">
 
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/task_title_cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="Title"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tvTodolistDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvTodolistTitle"
-            android:layout_marginLeft="15dp"
-            android:text="Description"
-             />
+            <TextView
+                android:id="@+id/task_description_cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvTodolistTitle"
+                android:text="Description"
+                android:textSize="12dp"
+                />
+
+        </LinearLayout>
 
     </LinearLayout>
+
+
+
 
 </androidx.cardview.widget.CardView>

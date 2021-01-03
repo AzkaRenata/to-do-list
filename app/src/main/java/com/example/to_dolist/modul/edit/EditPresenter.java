@@ -18,9 +18,12 @@ public class EditPresenter implements EditContract.Presenter{
 
     @Override
     public void saveData(final String title, final String description, ArrayList<Task> taskList, int id){
+        /*
         taskList.get(id-1).setTitle(title);
         taskList.get(id-1).setDescription(description);
         view.redirectToTaskList(taskList);
+
+         */
     }
 
     @Override

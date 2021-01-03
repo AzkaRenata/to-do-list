@@ -3,27 +3,31 @@ package com.example.to_dolist.utils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.to_dolist.R;
 import com.example.to_dolist.data.model.Task;
 
 public class RecyclerViewAdapterTodolist extends RecyclerView.Adapter<RecyclerViewAdapterTodolist.MyViewHolder> {
-    private static ArrayList<Task> mDataset;
+    private static List<Task> mDataset;
     private static MyClickListener myClickListener;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView tvTitle;
         TextView tvDescription;
+        CheckBox cbCheck;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            tvTitle = (TextView) itemView.findViewById(R.id.tvTodolistTitle);
-            tvDescription = (TextView) itemView.findViewById(R.id.tvTodolistDescription);
+            cbCheck = itemView.findViewById(R.id.task_check_cv);
+            tvTitle = itemView.findViewById(R.id.task_title_cv);
+            tvDescription = itemView.findViewById(R.id.task_description_cv);
             itemView.setOnClickListener(this);
         }
 
@@ -34,7 +38,7 @@ public class RecyclerViewAdapterTodolist extends RecyclerView.Adapter<RecyclerVi
         }
     }
 
-    public RecyclerViewAdapterTodolist(ArrayList<Task> myDataset) {
+    public RecyclerViewAdapterTodolist(List<Task> myDataset) {
         mDataset = myDataset;
     }
 
@@ -54,7 +58,11 @@ public class RecyclerViewAdapterTodolist extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        if(mDataset != null){
+            return mDataset.size();
+        }else{
+            return 0;
+        }
     }
 
     public void setOnItemClickListener(MyClickListener myClickListener) {

@@ -1,19 +1,16 @@
-package com.example.to_dolist.modul.list;
+package com.example.to_dolist.modul.detail;
 
 import android.util.Log;
 
 import com.example.to_dolist.data.model.Task;
-import com.example.to_dolist.data.source.local.TableHandler;
-import com.example.to_dolist.data.source.session.SessionRepository;
 import com.example.to_dolist.utils.RequestCallback;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ListPresenter implements ListContract.Presenter{
-    private final ListContract.View view;
+public class DetailPresenter implements DetailContract.Presenter{
+    private final DetailContract.View view;
 
-    public ListPresenter(ListContract.View view) {           //add
+    public DetailPresenter(DetailContract.View view) {           //add
         this.view = view;
     }
 
@@ -31,8 +28,7 @@ public class ListPresenter implements ListContract.Presenter{
             public void requestSuccess(List<Task> data) {
                 Log.e("MASOK", "ahahahah");
                 //Log.e("SIZE", "5" + String.valueOf(data.size()));
-                view.saveTask(data);
-                view.setList();
+                view.setList(data);
             }
 
             @Override

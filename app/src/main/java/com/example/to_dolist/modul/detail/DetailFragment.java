@@ -1,4 +1,4 @@
-package com.example.to_dolist.modul.list;
+package com.example.to_dolist.modul.detail;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,15 +25,13 @@ import com.example.to_dolist.modul.add.AddActivity;
 import com.example.to_dolist.modul.edit.EditActivity;
 import com.example.to_dolist.utils.RecyclerViewAdapterTodolist;
 import com.example.to_dolist.utils.RequestCallback;
-import com.example.to_dolist.utils.TaskSharedUtil;
 import com.example.to_dolist.utils.TokenSharedUtil;
-import com.example.to_dolist.utils.UtilProvider;
 import com.example.to_dolist.utils.myURL;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListFragment extends BaseFragment<ListActivity, ListContract.Presenter> implements ListContract.View {
+public class DetailFragment extends BaseFragment<DetailActivity, DetailContract.Presenter> implements DetailContract.View {
     Button btnAdd;
     Button btnClear;
     ListView listView;
@@ -43,11 +41,9 @@ public class ListFragment extends BaseFragment<ListActivity, ListContract.Presen
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList<String> ListElementsArrayList;
     TokenSharedUtil tokenSharedUtil;
-    TaskSharedUtil taskSharedUtil;
 
-    public ListFragment(TokenSharedUtil tokenSharedUtil) {
+    public DetailFragment(TokenSharedUtil tokenSharedUtil) {
         this.tokenSharedUtil = tokenSharedUtil;
-        this.taskSharedUtil = UtilProvider.getTaskSharedUtil();
     }
 
     @Nullable
@@ -55,7 +51,7 @@ public class ListFragment extends BaseFragment<ListActivity, ListContract.Presen
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_list, container, false);
-        mPresenter = new ListPresenter(this);
+        mPresenter = new DetailPresenter(this);
         mPresenter.start();
 
         mRecyclerView = fragmentView.findViewById(R.id.recyclerViewTodolist);
@@ -85,7 +81,7 @@ public class ListFragment extends BaseFragment<ListActivity, ListContract.Presen
     }
 
     @Override
-    public void setPresenter(ListContract.Presenter presenter) {
+    public void setPresenter(DetailContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -99,19 +95,22 @@ public class ListFragment extends BaseFragment<ListActivity, ListContract.Presen
     }
 
     @Override
-    public void setList() {
-        final List<Task> taskList = taskSharedUtil.getTask();
+    public void setList(List<Task> taskList) {
+        Log.e("TITLE", taskList.get(0).getTitle());
         mAdapter = new RecyclerViewAdapterTodolist(taskList);
         mRecyclerView.setAdapter(mAdapter);
 
+        /*
         ((RecyclerViewAdapterTodolist) mAdapter).setOnItemClickListener(new RecyclerViewAdapterTodolist.MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                int id = taskList.get(position).getId();
+                //int id = taskList.get(position).getId();
                 //Log.d("BELAJAR ACTIVITY",">>>>>"+ position);
                 //editTask(id);
             }
         });
+
+         */
     }
 
     public void editTask(int id) {
@@ -124,22 +123,15 @@ public class ListFragment extends BaseFragment<ListActivity, ListContract.Presen
         startActivity(intent);
     }
 
-    public void saveTask(List<Task> task){
-        taskSharedUtil.setTask(task);
-
-        List<Task> test = taskSharedUtil.getTask();
-        Log.e("testprint", test.get(0).getDescription());
-    }
-
     public void getList(final RequestCallback<List<Task>> requestCallback) {
         AndroidNetworking.get(myURL.GET_TASK_LIST_URL)
                 .addHeaders("Authorization", "Bearer " + tokenSharedUtil.getToken())
                 .setTag(this)
                 .setPriority(Priority.LOW)
                 .build()
-                .getAsObject(ListResponse.class, new ParsedRequestListener<ListResponse>() {
+                .getAsObject(DetailResponse.class, new ParsedRequestListener<DetailResponse>() {
                     @Override
-                    public void onResponse(ListResponse response) {
+                    public void onResponse(DetailResponse response) {
                         Log.e("TESS", "MASOKK");
                         if(response == null){
                             requestCallback.requestFailed("Null Response");

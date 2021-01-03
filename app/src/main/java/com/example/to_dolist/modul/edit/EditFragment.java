@@ -81,8 +81,11 @@ public class EditFragment extends BaseFragment<EditActivity, EditContract.Presen
 
     @Override
     public void showData(Task task) {
+        /*
         etTaskTitle.setText(task.getTitle());
         etTaskDescription.setText(task.getDescription());
+
+         */
     }
 
     @Override

@@ -1,33 +1,39 @@
 package com.example.to_dolist.modul.login;
 
-import com.example.to_dolist.data.model.Task;
-import com.example.to_dolist.data.model.User;
-import com.example.to_dolist.data.source.session.SessionRepository;
+import android.util.Log;
 
-import java.util.ArrayList;
+import com.example.to_dolist.utils.RequestCallback;
+import com.example.to_dolist.utils.TokenSharedUtil;
 
 public class LoginPresenter implements LoginContract.Presenter{
     private final LoginContract.View view;
-    private final SessionRepository sessionRepository;
+    private final TokenSharedUtil sessionRepository;
 
-    public LoginPresenter(LoginContract.View view, SessionRepository sessionRepository) {
+    public LoginPresenter(LoginContract.View view, TokenSharedUtil sessionRepository) {
         this.view = view;
         this.sessionRepository = sessionRepository;
     }
 
     @Override
     public void start() {
-        if(sessionRepository.getSessionData() != null){
-            view.redirectToList();
-        }
+
     }
 
     @Override
     public void performLogin(final String email, final String password){
-        User loggedUser = new User(email, "TOKEN123456");
-        sessionRepository.setSessionData(loggedUser);
+        view.requestLogin(email, password, new RequestCallback<LoginResponse>() {
+            @Override
+            public void requestSuccess(LoginResponse data) {
+                view.redirectToList();
+                Log.e("tes", data.token);
+                view.saveToken(data.token);
+            }
 
-        view.redirectToList();
+            @Override
+            public void requestFailed(String errorMessage) {
+                view.showFailedMessage(errorMessage);
+            }
+        });
     }
 
 }
