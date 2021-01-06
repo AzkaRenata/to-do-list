@@ -25,7 +25,7 @@
     <!--My Custom Color-->
     <color name="customPrimary">#cf3f30</color>
     <color name="customPrimaryDark">#7a111d</color>
-    <color name="customText">#de6262</color>
+    <color name="customText">#707070</color>
     <color name="customTextLight">#FFFFFF</color>
     <color name="customLightBackground">#a7e6d7</color>
     <color name="customTransparent">#8c128C7E</color>

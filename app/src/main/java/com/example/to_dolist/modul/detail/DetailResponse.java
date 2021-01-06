@@ -6,4 +6,5 @@ import java.util.List;
 
 public class DetailResponse {
     public List<Task> taskList;
+    public String message;
 }

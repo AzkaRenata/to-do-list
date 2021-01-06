@@ -11,14 +11,22 @@ public class Task extends BaseModel{
     private String title;
     private String description;
     private String due_date;
-    private String checked;
+    private boolean checked;
+    private String created_at;
 
-    public Task(int id, String title, String description, String due_date, String checked) {
+    public Task(int id, String title, String description, String due_date, boolean checked, String created_at) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.due_date = due_date;
         this.checked = checked;
+        this.created_at = created_at;
+    }
+
+    public Task(String title, String description, String due_date) {
+        this.title = title;
+        this.description = description;
+        this.due_date = due_date;
     }
 
     public int getId() {
@@ -53,11 +61,19 @@ public class Task extends BaseModel{
         this.due_date = due_date;
     }
 
-    public String getChecked() {
+    public boolean isChecked() {
         return checked;
     }
 
-    public void setChecked(String checked) {
+    public void setChecked(boolean checked) {
         this.checked = checked;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 }

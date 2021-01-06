@@ -16,13 +16,8 @@ public class AddActivity extends BaseFragmentHolderActivity {
     @Override
     protected void initializeFragment() {
         initializeView();
-        Intent intent = getIntent();
-        Bundle args = intent.getBundleExtra("taskList");
-        ArrayList<Task> taskList = (ArrayList<Task>) args.getSerializable("data");
-        btBack.setVisibility(View.GONE);
-        btOptionMenu.setVisibility(View.GONE);
 
-        addFragment = new AddFragment(taskList);
+        addFragment = new AddFragment();
         setCurrentFragment(addFragment, false);
     }
 }

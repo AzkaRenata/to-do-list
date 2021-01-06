@@ -11,10 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListPresenter implements ListContract.Presenter{
+    private final ListActivity activity;
     private final ListContract.View view;
 
-    public ListPresenter(ListContract.View view) {           //add
+    public ListPresenter(ListContract.View view, ListActivity activity) {           //add
         this.view = view;
+        this.activity = activity;
     }
 
     @Override
@@ -26,18 +28,39 @@ public class ListPresenter implements ListContract.Presenter{
     }
 
     public void getTaskList(){
+        activity.startLoading();
         view.getList(new RequestCallback<List<Task>>() {
             @Override
             public void requestSuccess(List<Task> data) {
-                Log.e("MASOK", "ahahahah");
-                //Log.e("SIZE", "5" + String.valueOf(data.size()));
                 view.saveTask(data);
                 view.setList();
+                view.checkResult();
+                activity.stopLoading();
             }
 
             @Override
             public void requestFailed(String errorMessage) {
-                Log.e("GAGAL", "AHAHAHA");
+                activity.stopLoading();
+                view.showFailedMessage(errorMessage);
+            }
+        });
+    }
+
+    @Override
+    public void performChecked(String isChecked, int id) {
+        activity.startLoading();
+        view.requestCheckedChange(isChecked, id, new RequestCallback<ListResponse>() {
+            @Override
+            public void requestSuccess(ListResponse data) {
+                view.saveTask(data.taskList);
+                view.setList();
+                view.checkResult();
+                activity.stopLoading();
+            }
+
+            @Override
+            public void requestFailed(String errorMessage) {
+                activity.stopLoading();
                 view.showFailedMessage(errorMessage);
             }
         });

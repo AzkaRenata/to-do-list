@@ -18,16 +18,9 @@ public class EditActivity extends BaseFragmentHolderActivity {
     protected void initializeFragment() {
         initializeView();
 
-        btBack.setVisibility(View.GONE);
-        btOptionMenu.setVisibility(View.GONE);
+        int id = getIntent().getIntExtra("id", 0);
 
-        Intent intent = getIntent();
-        Bundle args = intent.getBundleExtra("taskList");
-        ArrayList<Task> taskList = (ArrayList<Task>) args.getSerializable("data");
-        int id = intent.getIntExtra("id", 0);
-
-        editTaskFragment = new EditFragment(taskList, id);
-        //editTaskFragment.setTask(task);
+        editTaskFragment = new EditFragment(id);
         setCurrentFragment(editTaskFragment, false);
 
     }

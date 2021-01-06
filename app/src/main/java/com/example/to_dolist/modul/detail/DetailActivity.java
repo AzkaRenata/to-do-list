@@ -8,17 +8,14 @@ import com.example.to_dolist.utils.UtilProvider;
 
 public class DetailActivity extends BaseFragmentHolderActivity {
     DetailFragment detailFragment;
-    private final int UPDATE_REQUEST = 2019;
-    TokenSharedUtil tokenSharedUtil;
 
     @Override
     protected void initializeFragment() {
         initializeView();
-
-        btBack.setVisibility(View.GONE);
-        btOptionMenu.setVisibility(View.GONE);
-        tokenSharedUtil = UtilProvider.getTokenSharedUtil();
-        detailFragment = new DetailFragment(tokenSharedUtil);
+        int id =getIntent().getIntExtra("id", 0);
+        btShare.setVisibility(View.VISIBLE);
+        btDelete.setVisibility(View.VISIBLE);
+        detailFragment = new DetailFragment(id, btShare, btDelete);
         setCurrentFragment(detailFragment, false);
 
     }

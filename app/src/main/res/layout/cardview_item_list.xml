@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvTodolistTitle"
-                android:text="Description"
+                android:text="Due Date"
                 android:textSize="12dp"
                 />
 

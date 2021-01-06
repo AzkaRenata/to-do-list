@@ -15,13 +15,6 @@ public class FirstActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_list);
 
-        moveBtn = findViewById(R.id.button_to_add_layout);
-        moveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                move();
-            }
-        });
     }
 
     public void move(){

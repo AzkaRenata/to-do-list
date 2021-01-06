@@ -7,4 +7,5 @@ import java.util.List;
 
 public class ListResponse {
     public List<Task> taskList;
+    public Task task;
 }

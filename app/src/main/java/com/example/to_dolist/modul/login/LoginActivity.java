@@ -16,14 +16,6 @@ public class LoginActivity extends BaseFragmentHolderActivity {
         initializeView();
         tokenSharedUtil = UtilProvider.getTokenSharedUtil();
 
-        //ArrayList<Task> taskList = new ArrayList<>();
-
-        //taskList.add(new Task(1,"Demo Android", "Demo todo list android"));
-        //taskList.add(new Task(2, "WPPL Frontend", "Selesaikan Frontend Web"));
-
-        btBack.setVisibility(View.GONE);
-        btOptionMenu.setVisibility(View.GONE);
-
         loginFragment = new LoginFragment(tokenSharedUtil);
         setCurrentFragment(loginFragment, false);
 

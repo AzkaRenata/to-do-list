@@ -1,13 +1,16 @@
 package com.example.to_dolist.modul.login;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -19,9 +22,11 @@ import com.example.to_dolist.R;
 import com.example.to_dolist.base.BaseFragment;
 import com.example.to_dolist.data.model.Task;
 import com.example.to_dolist.modul.list.ListActivity;
+import com.example.to_dolist.modul.register.RegisterActivity;
 import com.example.to_dolist.utils.RequestCallback;
 import com.example.to_dolist.utils.TokenSharedUtil;
 import com.example.to_dolist.utils.myURL;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
@@ -29,8 +34,10 @@ public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Pre
     EditText etUsername;
     EditText etPassword;
     Button btnLogin;
-    ArrayList<Task> taskList = new ArrayList<>();
     TokenSharedUtil tokenSharedUtil;
+    TextInputLayout tilEmail;
+    TextInputLayout tilPassword;
+    TextView tvRegister;
 
     public LoginFragment(TokenSharedUtil tokenSharedUtil) {
         this.tokenSharedUtil = tokenSharedUtil;
@@ -41,12 +48,19 @@ public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Pre
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_login, container, false);
-        mPresenter = new LoginPresenter(this, tokenSharedUtil);
+        mPresenter = new LoginPresenter(this, tokenSharedUtil, activity);
         mPresenter.start();
 
-        etUsername = fragmentView.findViewById(R.id.et_username);
-        etPassword = fragmentView.findViewById(R.id.et_password);
-        btnLogin = fragmentView.findViewById(R.id.bt_login);
+        etUsername = fragmentView.findViewById(R.id.login_email_et);
+        etPassword = fragmentView.findViewById(R.id.login_password_et);
+        btnLogin = fragmentView.findViewById(R.id.login_btn);
+        tilEmail = fragmentView.findViewById(R.id.login_email_til);
+        tilPassword = fragmentView.findViewById(R.id.login_password_til);
+        tvRegister = fragmentView.findViewById(R.id.register);
+
+        tilEmail.setHintEnabled(false);
+        tilPassword.setHintEnabled(false);
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,9 +68,21 @@ public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Pre
             }
         });
 
+        tvRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTvRegisterClick();
+            }
+        });
+
         setTitle("Sign in");
 
         return fragmentView;
+    }
+
+    public void setTvRegisterClick() {
+        Intent intent = new Intent(activity, RegisterActivity.class);
+        startActivity(intent);
     }
 
     public void setBtLoginClick(){
@@ -81,8 +107,8 @@ public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Pre
         Log.e("tess", "ajez@gmail.com");
         Log.e("tess", "ajez123");
         AndroidNetworking.post(myURL.LOGIN_URL)
-                .addBodyParameter("email", "ajez@gmail.com")
-                .addBodyParameter("password", "ajez123")
+                .addBodyParameter("email", email)
+                .addBodyParameter("password", password)
                 .build()
                 .getAsObject(LoginResponse.class, new ParsedRequestListener<LoginResponse>() {
                     @Override

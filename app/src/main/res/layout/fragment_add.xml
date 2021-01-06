@@ -1,55 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginHorizontal="15dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <TextView
-    android:id="@+id/name_title"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:text="Task Name"/>
-
-    <EditText
-        android:id="@+id/task_add"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name_title"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/description_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/task_add"
-        android:padding="10dp"
-        android:text="Description"/>
+        <EditText
+            android:id="@+id/task_add_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_form"
+            android:fontFamily="@font/semibold"
+            android:hint="@string/title_text"
+            android:inputType="text"
+            android:maxLength="20"
+            android:textColor="#707070"
+            android:paddingLeft="16dp"/>
 
-    <EditText
-        android:id="@+id/task_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/description_title"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/task_add_description"
+            android:layout_below="@+id/task_add_title"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:gravity="top"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/bg_form"
+            android:fontFamily="@font/semibold"
+            android:hint="@string/description_text"
+            android:inputType="textMultiLine"
+            android:textColor="#707070"
+            android:paddingTop="10dp"
+            android:paddingLeft="16dp"/>
 
-    <Button
-        android:id="@+id/button_add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/task_description"
-        android:layout_marginTop="0dp"
-        android:text="Add"
-        android:paddingTop="12dp"/>
 
-    <Button
-        android:id="@+id/button_back"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_add"
-        android:layout_marginTop="0dp"
-        android:text="Back" />
+        <LinearLayout
+            android:id="@+id/task_add_datetime_layout"
+            android:layout_below="@+id/task_add_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/task_add_date_tv"
+                android:layout_below="@+id/task_add_description"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_form"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/semibold"
+                android:gravity="center_vertical"
+                android:ems="10"
+                android:paddingStart="16dp"
+                android:hint="Date"
+                android:inputType="date"
+                android:textColor="#707070"
+                android:layout_marginRight="10dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/task_add_time_tv"
+                android:layout_below="@+id/task_add_date_tv"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/bg_form"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/semibold"
+                android:gravity="center_vertical"
+                android:ems="10"
+                android:paddingStart="16dp"
+                android:hint="Time"
+                android:inputType="date"
+                android:textColor="#707070"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/task_add_add_btn"
+            android:layout_below="@id/task_add_datetime_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginVertical="15dp"
+            android:background="@drawable/bg_btn"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:text="add"
+            android:textColor="?attr/textWhiteColor"/>
+    </RelativeLayout>
+
+
+
+</ScrollView>
+
