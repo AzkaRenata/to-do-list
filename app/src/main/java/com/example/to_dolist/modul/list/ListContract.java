@@ -11,6 +11,7 @@ import java.util.List;
 public interface ListContract {
     interface View extends BaseView<Presenter> {
         void redirectToAdd();
+        void redirectToLogin();
         void checkResult();
         void setList();
         void getList(final RequestCallback<List<Task>> requestCallback);
@@ -24,5 +25,6 @@ public interface ListContract {
         void moveToAdd();
         void getTaskList();
         void performChecked(String isChecked, int id);
+        void performLogout();
     }
 }

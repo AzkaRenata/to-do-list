@@ -1,5 +1,6 @@
 package com.example.to_dolist.modul.login;
 
+import android.content.Intent;
 import android.view.View;
 
 import com.example.to_dolist.base.BaseFragmentHolderActivity;
@@ -8,7 +9,6 @@ import com.example.to_dolist.utils.UtilProvider;
 
 public class LoginActivity extends BaseFragmentHolderActivity {
     LoginFragment loginFragment;
-    private final int UPDATE_REQUEST = 2019;
     TokenSharedUtil tokenSharedUtil;
 
     @Override
@@ -19,5 +19,13 @@ public class LoginActivity extends BaseFragmentHolderActivity {
         loginFragment = new LoginFragment(tokenSharedUtil);
         setCurrentFragment(loginFragment, false);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
     }
 }

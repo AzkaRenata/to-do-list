@@ -3,6 +3,7 @@ package com.example.to_dolist.modul.list;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,10 +32,13 @@ import com.example.to_dolist.modul.add.AddActivity;
 import com.example.to_dolist.modul.detail.DetailActivity;
 import com.example.to_dolist.modul.edit.EditActivity;
 import com.example.to_dolist.modul.edit.EditResponse;
+import com.example.to_dolist.modul.login.LoginActivity;
+import com.example.to_dolist.modul.login.LoginResponse;
 import com.example.to_dolist.utils.RecyclerViewAdapterTodolist;
 import com.example.to_dolist.utils.RequestCallback;
 import com.example.to_dolist.utils.TaskSharedUtil;
 import com.example.to_dolist.utils.TokenSharedUtil;
+import com.example.to_dolist.utils.UserSharedUtil;
 import com.example.to_dolist.utils.UtilProvider;
 import com.example.to_dolist.utils.myURL;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -46,6 +51,7 @@ public class ListFragment extends BaseFragment<ListActivity, ListContract.Presen
     TextView tvFinished;
     View viewTodo;
     View viewFinished;
+    ImageButton btLogout;
     boolean onTodo;
     FloatingActionButton fabAdd;
     RecyclerView mRecyclerView;
@@ -55,10 +61,13 @@ public class ListFragment extends BaseFragment<ListActivity, ListContract.Presen
     RelativeLayout rlNoFinished;
     TokenSharedUtil tokenSharedUtil;
     TaskSharedUtil taskSharedUtil;
+    UserSharedUtil userSharedUtil;
 
-    public ListFragment(TokenSharedUtil tokenSharedUtil) {
+    public ListFragment(TokenSharedUtil tokenSharedUtil, ImageButton btLogout) {
         this.tokenSharedUtil = tokenSharedUtil;
         this.taskSharedUtil = UtilProvider.getTaskSharedUtil();
+        this.userSharedUtil = UtilProvider.getUserSharedUtil();
+        this.btLogout = btLogout;
         onTodo = true;
     }
 
@@ -105,6 +114,13 @@ public class ListFragment extends BaseFragment<ListActivity, ListContract.Presen
             }
         });
 
+        btLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setBtLogoutClick();
+            }
+        });
+
         mPresenter.getTaskList();
 
         setTitle("My To-do List");
@@ -125,6 +141,20 @@ public class ListFragment extends BaseFragment<ListActivity, ListContract.Presen
             rlNoTodo.setVisibility(View.GONE);
             rlNoFinished.setVisibility(View.GONE);
         }
+    }
+
+    public void setBtLogoutClick(){
+        tokenSharedUtil.clear();
+        userSharedUtil.clear();
+        taskSharedUtil.clear();
+        Toast.makeText(getContext(), "Logout Successful", Toast.LENGTH_SHORT).show();
+        mPresenter.performLogout();
+    }
+
+    @Override
+    public void redirectToLogin() {
+        Intent intent = new Intent(activity, LoginActivity.class);
+        startActivity(intent);
     }
 
     public void setFabAddClick(){
@@ -167,14 +197,16 @@ public class ListFragment extends BaseFragment<ListActivity, ListContract.Presen
         final List<Task> tempList = taskSharedUtil.getTask();
         final List<Task> taskList = new ArrayList<>();
 
-        for(Task temp : tempList){
-            if(onTodo){
-                if(!temp.isChecked()){
-                    taskList.add(temp);
-                }
-            }else{
-                if(temp.isChecked()){
-                    taskList.add(temp);
+        if(tempList != null){
+            for(Task temp : tempList){
+                if(onTodo){
+                    if(!temp.isChecked()){
+                        taskList.add(temp);
+                    }
+                }else{
+                    if(temp.isChecked()){
+                        taskList.add(temp);
+                    }
                 }
             }
         }

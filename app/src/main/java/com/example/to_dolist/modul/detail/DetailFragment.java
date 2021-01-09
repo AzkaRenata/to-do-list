@@ -31,6 +31,7 @@ import com.example.to_dolist.modul.list.ListResponse;
 import com.example.to_dolist.utils.RequestCallback;
 import com.example.to_dolist.utils.TaskSharedUtil;
 import com.example.to_dolist.utils.TokenSharedUtil;
+import com.example.to_dolist.utils.UserSharedUtil;
 import com.example.to_dolist.utils.UtilProvider;
 import com.example.to_dolist.utils.myURL;
 
@@ -41,7 +42,6 @@ public class DetailFragment extends BaseFragment<DetailActivity, DetailContract.
     TextView tvDescription;
     TextView tvDueDate;
     CheckBox cbCheck;
-    CheckBox cbAlarm;
     ImageButton ibEdit;
     ImageButton btShare;
     ImageButton btDelete;
@@ -50,10 +50,13 @@ public class DetailFragment extends BaseFragment<DetailActivity, DetailContract.
     int id;
     TokenSharedUtil tokenSharedUtil;
     TaskSharedUtil taskSharedUtil;
+    UserSharedUtil userSharedUtil;
 
     public DetailFragment(int id, ImageButton btShare, ImageButton btDelete) {
         tokenSharedUtil = UtilProvider.getTokenSharedUtil();
         taskSharedUtil = UtilProvider.getTaskSharedUtil();
+        userSharedUtil = UtilProvider.getUserSharedUtil();
+
         this.id = id;
         this.btShare = btShare;
         this.btDelete = btDelete;
@@ -71,7 +74,6 @@ public class DetailFragment extends BaseFragment<DetailActivity, DetailContract.
         tvDescription = fragmentView.findViewById(R.id.task_description_detail);
         tvDueDate = fragmentView.findViewById(R.id.task_detail_date_tv);
         cbCheck = fragmentView.findViewById(R.id.task_detail_check_cb);
-        cbAlarm = fragmentView.findViewById(R.id.task_detail_alarm_cb);
         ibEdit = fragmentView.findViewById(R.id.task_detail_edit_ib);
         tvCreatedAt = fragmentView.findViewById(R.id.task_detail_created_tv);
 
@@ -110,10 +112,10 @@ public class DetailFragment extends BaseFragment<DetailActivity, DetailContract.
         sendIntent.setAction(Intent.ACTION_SEND);
 
         String text;
-
         text = "*" + tvTitle.getText().toString() + "*" + "\n\n"
                 + tvDescription.getText().toString() + "\n\n"
-                + "Due : " + tvDueDate.getText().toString();
+                + "Due : " + tvDueDate.getText().toString() + "\n\n"
+                + "By : *" + userSharedUtil.getUser().getUsername() + "*";
 
 
         sendIntent.putExtra(Intent.EXTRA_TEXT, text);

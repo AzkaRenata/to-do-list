@@ -5,6 +5,7 @@ public class myURL {
     private final static String IMAGE_URL = "http://192.168.1.5:8000/storage/";
 
     public final static String LOGIN_URL = BASE_URL + "user/login";
+    public final static String GOOGLE_LOGIN_URL = BASE_URL + "user/login/google";
     public final static String REGISTER_URL = BASE_URL + "user/register";
     public final static String GET_TASK_LIST_URL = BASE_URL + "task/list";
     public final static String UPDATE_TASK_URL = BASE_URL + "task/update/";

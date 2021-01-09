@@ -17,6 +17,7 @@ public abstract class BaseFragmentHolderActivity extends BaseActivity {
     protected FrameLayout flFragmentContainer;
     protected ImageButton btShare;
     protected ImageButton btDelete;
+    protected ImageButton btLogout;
     protected View vMenuBarShadow;
     protected RelativeLayout rlActivityFragmentHolder;
     protected RelativeLayout loading;
@@ -27,6 +28,7 @@ public abstract class BaseFragmentHolderActivity extends BaseActivity {
         tvToolbarTitle = (TextView) findViewById(R.id.tvToolbarTitle);
         btShare = findViewById(R.id.task_share_btn);
         btDelete = findViewById(R.id.task_delete_btn);
+        btLogout = findViewById(R.id.task_logout_btn);
         flFragmentContainer = (FrameLayout) findViewById(R.id.flFragmentContainer);
         vMenuBarShadow = findViewById(R.id.vMenuBarShadow);
         rlActivityFragmentHolder = (RelativeLayout) findViewById(R.id.rlActivityFragmentHolder);
@@ -34,7 +36,7 @@ public abstract class BaseFragmentHolderActivity extends BaseActivity {
 
         btShare.setVisibility(View.GONE);
         btDelete.setVisibility(View.GONE);
-
+        btLogout.setVisibility(View.GONE);
     }
 
     public void setTitle(String title) {

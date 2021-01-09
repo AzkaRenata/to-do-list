@@ -75,39 +75,47 @@
             android:textSize="20dp" />
 
         <LinearLayout
+            android:id="@+id/login_to_register_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_btn"
             android:layout_marginVertical="5dp">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center">
+                android:fontFamily="@font/semibold"
+                android:paddingLeft="60dp"
+                android:text="Don't Have an Account ?"
+                android:textColor="#707070"
+                android:textSize="16dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/semibold"
-                    android:paddingLeft="60dp"
-                    android:text="Don't Have an Account ?"
-                    android:textColor="#707070"
-                    android:textSize="16dp" />
+            <TextView
+                android:id="@+id/register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:fontFamily="@font/semibold"
+                android:onClick="performMove"
+                android:paddingLeft="10dp"
+                android:text="Register"
+                android:textColor="@color/customPrimary"
+                android:textSize="16dp"
+                tools:context=".modul.login.LoginActivity" />
 
-                <TextView
-                    android:id="@+id/register"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:fontFamily="@font/semibold"
-                    android:onClick="performMove"
-                    android:paddingLeft="10dp"
-                    android:text="Register"
-                    android:textColor="@color/customPrimary"
-                    android:textSize="16dp"
-                    tools:context=".modul.login.LoginActivity" />
-            </LinearLayout>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/google_button"
+            android:layout_below="@id/login_to_register_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign in With Google"
+            android:textColor="@color/customPrimary"
+            android:drawableStart="@drawable/google_icon"
+            android:paddingStart="16dp"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/google_button"/>
     </RelativeLayout>
 </ScrollView>

@@ -8,18 +8,14 @@ import com.example.to_dolist.utils.TokenSharedUtil;
 public class LoginPresenter implements LoginContract.Presenter{
     private final LoginActivity activity;
     private final LoginContract.View view;
-    private final TokenSharedUtil sessionRepository;
 
-    public LoginPresenter(LoginContract.View view, TokenSharedUtil sessionRepository, LoginActivity activity) {
+    public LoginPresenter(LoginContract.View view, LoginActivity activity) {
         this.view = view;
-        this.sessionRepository = sessionRepository;
         this.activity = activity;
     }
 
     @Override
-    public void start() {
-
-    }
+    public void start() {}
 
     @Override
     public void performLogin(final String email, final String password){
@@ -27,8 +23,9 @@ public class LoginPresenter implements LoginContract.Presenter{
         view.requestLogin(email, password, new RequestCallback<LoginResponse>() {
             @Override
             public void requestSuccess(LoginResponse data) {
-                activity.stopLoading();
                 view.saveToken(data.token);
+                view.saveUser(data.user);
+                activity.stopLoading();
                 view.redirectToList();
             }
 
@@ -40,4 +37,21 @@ public class LoginPresenter implements LoginContract.Presenter{
         });
     }
 
+    public void performGoogleLogin(String email, String name) {
+        activity.startLoading();
+        view.requestGoogleLogin(email, name, new RequestCallback<LoginResponse>() {
+            @Override
+            public void requestSuccess(LoginResponse data) {
+                view.saveToken(data.token);
+                activity.stopLoading();
+                view.redirectToList();
+            }
+
+            @Override
+            public void requestFailed(String errorMessage) {
+                activity.stopLoading();
+                view.showFailedMessage(errorMessage);
+            }
+        });
+    }
 }

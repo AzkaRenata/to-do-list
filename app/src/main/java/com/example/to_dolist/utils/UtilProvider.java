@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 public class UtilProvider {
     private static TokenSharedUtil tokenSharedUtil;
     private static TaskSharedUtil taskSharedUtil;
+    private static UserSharedUtil userSharedUtil;
 
     public static void initialize(Context context){
         initSharedPreferencesUtil(context);
@@ -15,6 +16,7 @@ public class UtilProvider {
         SharedPreferences sharedPreferences = context.getSharedPreferences("example", Context.MODE_PRIVATE);
         tokenSharedUtil = new TokenSharedUtil(sharedPreferences);
         taskSharedUtil = new TaskSharedUtil(sharedPreferences);
+        userSharedUtil = new UserSharedUtil(sharedPreferences);
     }
 
     public static TokenSharedUtil getTokenSharedUtil(){
@@ -23,5 +25,9 @@ public class UtilProvider {
 
     public static TaskSharedUtil getTaskSharedUtil(){
         return taskSharedUtil;
+    }
+
+    public static UserSharedUtil getUserSharedUtil(){
+        return userSharedUtil;
     }
 }

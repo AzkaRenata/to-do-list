@@ -92,6 +92,8 @@ public class RegisterFragment extends BaseFragment<RegisterActivity, RegisterCon
                 return true;
             }
         });
+
+        setTitle("Register");
     }
 
     public void setBtRegisterClick(){

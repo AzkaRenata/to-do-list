@@ -41,7 +41,8 @@
                 android:background="@android:color/transparent"
                 android:scaleType="fitXY"
                 android:layout_width="35dp"
-                android:layout_height="35dp" />
+                android:layout_height="35dp"
+                android:visibility="gone" />
 
             <ImageButton
                 android:id="@+id/task_share_btn"
@@ -52,7 +53,20 @@
                 android:background="@android:color/transparent"
                 android:scaleType="fitXY"
                 android:layout_width="35dp"
-                android:layout_height="35dp" />
+                android:layout_height="35dp"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/task_logout_btn"
+                android:src="@drawable/ic_log_out"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:visibility="gone" />
 
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>

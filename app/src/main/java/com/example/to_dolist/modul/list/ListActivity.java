@@ -15,8 +15,9 @@ public class ListActivity extends BaseFragmentHolderActivity {
     protected void initializeFragment() {
         initializeView();
 
+        btLogout.setVisibility(View.VISIBLE);
         tokenSharedUtil = UtilProvider.getTokenSharedUtil();
-        listFragment = new ListFragment(tokenSharedUtil);
+        listFragment = new ListFragment(tokenSharedUtil, btLogout);
         setCurrentFragment(listFragment, false);
 
     }

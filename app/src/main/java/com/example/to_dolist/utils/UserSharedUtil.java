@@ -1,43 +1,42 @@
 package com.example.to_dolist.utils;
 
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.example.to_dolist.data.model.Task;
+import com.example.to_dolist.data.model.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
-public class TaskSharedUtil {
+public class UserSharedUtil {
     private final SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
-    public TaskSharedUtil(SharedPreferences sharedPreferences) {
+    public UserSharedUtil(SharedPreferences sharedPreferences) {
         this.sharedPreferences = sharedPreferences;
         this.editor = sharedPreferences.edit();
     }
 
-    public void setTask(List<Task> task){
+    public void setUser(User user){
         Gson gson = new Gson();
-        String json = gson.toJson(task);
-        editor.putString("Task", json);
+        String json = gson.toJson(user);
+        editor.putString("User", json);
         editor.commit();
     }
 
-    public List<Task> getTask(){
+    public User getUser(){
         Gson gson = new Gson();
-        String json = sharedPreferences.getString("Task", null);
-        Type type = new TypeToken<List<Task>>(){}.getType();
-        List<Task> task = gson.fromJson(json, type);
+        String json = sharedPreferences.getString("User", null);
+        Type type = new TypeToken<User>(){}.getType();
+        User user = gson.fromJson(json, type);
 
-        return task;
+        return user;
     }
 
     public void clear(){
-        editor.putString("Task", null).apply();
+        editor.putString("User", null).apply();
     }
 
 }
