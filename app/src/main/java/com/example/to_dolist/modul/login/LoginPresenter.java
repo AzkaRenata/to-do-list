@@ -43,6 +43,7 @@ public class LoginPresenter implements LoginContract.Presenter{
             @Override
             public void requestSuccess(LoginResponse data) {
                 view.saveToken(data.token);
+                view.saveUser(data.user);
                 activity.stopLoading();
                 view.redirectToList();
             }
